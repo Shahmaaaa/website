@@ -16,7 +16,7 @@ export const Hero: React.FC<HeroProps> = ({ onBrowseClick, onVisitClick }) => {
         backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url(${heroBackground})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        height: '100vh',
+        minHeight: '100vh',
         width: '100%',
         display: 'flex',
         flexDirection: 'column',
@@ -24,7 +24,7 @@ export const Hero: React.FC<HeroProps> = ({ onBrowseClick, onVisitClick }) => {
         justifyContent: 'center',
         textAlign: 'center',
         color: '#ffffff',
-        padding: '6rem 2rem 0 2rem', // Top padding prevents overlapping with fixed navbar
+        padding: '6rem 1.25rem 2rem 1.25rem',
         position: 'relative'
       }}
     >
@@ -49,7 +49,7 @@ export const Hero: React.FC<HeroProps> = ({ onBrowseClick, onVisitClick }) => {
           style={{ 
             fontFamily: 'var(--font-serif)', 
             fontWeight: 600, 
-            fontSize: '4.5rem', 
+            fontSize: 'clamp(2rem, 7vw, 4.5rem)', 
             lineHeight: '1.1',
             color: '#ffffff', 
             marginBottom: '1rem',
@@ -64,7 +64,7 @@ export const Hero: React.FC<HeroProps> = ({ onBrowseClick, onVisitClick }) => {
         <h2 
           style={{ 
             fontFamily: 'var(--font-family)',
-            fontSize: '1.35rem', 
+            fontSize: 'clamp(1rem, 3.5vw, 1.35rem)', 
             fontWeight: 500, 
             letterSpacing: '0.08em', 
             color: '#ffffff',
@@ -91,7 +91,7 @@ export const Hero: React.FC<HeroProps> = ({ onBrowseClick, onVisitClick }) => {
         </p>
 
         {/* Action button row */}
-        <div style={{ display: 'flex', gap: '1.25rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap', width: '100%' }}>
           <button
             onClick={onBrowseClick}
             style={{

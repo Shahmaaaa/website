@@ -75,7 +75,7 @@ export const Gallery: React.FC = () => {
   ];
 
   return (
-    <section id="gallery" className="section" style={{ backgroundColor: '#F4EFE6', borderBottom: '1px solid rgba(198, 134, 66, 0.08)' }}>
+    <section id="gallery" className="section" style={{ background: 'linear-gradient(135deg, #fcfaf8 0%, #c4a484 50%, #684128 100%)', borderBottom: '1px solid rgba(198, 134, 66, 0.08)' }}>
       <div className="container">
         {/* Section Header */}
         <div className="section-header fade-in-on-scroll visible" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>

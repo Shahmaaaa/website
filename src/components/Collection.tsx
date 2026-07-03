@@ -46,16 +46,37 @@ export const Collection: React.FC = () => {
   const handleWhatsApp = (sofa: SofaItem, intent: 'inquire' | 'colors' = 'inquire') => {
     const phoneNumber = '919961734882';
     const color = activeSwatches[sofa.id] || sofa.swatches?.[0]?.name || 'Default';
-    
+
+    // Build the absolute image URL so owner can tap it and view the sofa immediately
+    const imageUrl = sofa.image
+      ? sofa.image.startsWith('http')
+        ? sofa.image
+        : `${window.location.origin}${sofa.image}`
+      : null;
+
     let message = '';
     if (intent === 'colors') {
-      message = encodeURIComponent(`Hi Zain Sofas, I am interested in the "${sofa.name}" sofa. Could you please show me the different colors available for this model?`);
+      message =
+        `Hi Zain Sofas & Furniture! 👋\n\n` +
+        `I am interested in the *"${sofa.name}"* (${sofa.style}) sofa and would like to see the available colors.\n\n` +
+        `📋 *Sofa Details:*\n` +
+        `• Model: ${sofa.name}\n` +
+        `• Style: ${sofa.style}\n` +
+        (imageUrl ? `• Sofa Photo: ${imageUrl}\n` : '') +
+        `\nCould you please show me all available fabric colors for this model?`;
     } else {
-      message = encodeURIComponent(
-        `Hi Zain Sofas, I am interested in the "${sofa.name}" sofa (${color} variant) from your collection. Please share availability and pricing details.`
-      );
+      message =
+        `Hi Zain Sofas & Furniture! 👋\n\n` +
+        `I am interested in the *"${sofa.name}"* sofa from your collection.\n\n` +
+        `📋 *Sofa Details:*\n` +
+        `• Model: ${sofa.name}\n` +
+        `• Style: ${sofa.style}\n` +
+        `• Selected Color: ${color}\n` +
+        (imageUrl ? `• Sofa Photo: ${imageUrl}\n` : '') +
+        `\nPlease share availability and pricing details. Thank you! 🙏`;
     }
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   return (
@@ -192,11 +213,11 @@ export const Collection: React.FC = () => {
               className="sofa-card"
             >
               {/* Image Area — placeholder */}
-              <div style={{ position: 'relative', backgroundColor: '#f3efe8', aspectRatio: '4/3', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div className="sofa-img-wrapper" style={{ position: 'relative', backgroundColor: '#f3efe8', aspectRatio: '4/3', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                 {sofa.image ? (
-                  <img src={sofa.image} alt={sofa.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                  <img src={sofa.image} alt={sofa.name} className="sofa-img" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                 ) : (
-                  <div style={{ textAlign: 'center', color: '#c4b8a4' }}>
+                  <div className="sofa-img" style={{ textAlign: 'center', color: '#c4b8a4' }}>
                     <div style={{ fontSize: '2.5rem', marginBottom: '0.25rem' }}>🛋</div>
                     <span style={{ fontSize: '0.7rem', fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase' }}>Photo Coming Soon</span>
                   </div>
@@ -286,11 +307,11 @@ export const Collection: React.FC = () => {
               className="sofa-card"
             >
               {/* Thumbnail */}
-              <div style={{ backgroundColor: '#f3efe8', borderRadius: '6px', aspectRatio: '4/3', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <div className="sofa-img-wrapper" style={{ backgroundColor: '#f3efe8', borderRadius: '6px', aspectRatio: '4/3', display: 'flex', alignItems: 'center', justifyContent: 'center', overflow: 'hidden' }}>
                 {sofa.image ? (
-                  <img src={sofa.image} alt={sofa.name} style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '6px' }} />
+                  <img src={sofa.image} alt={sofa.name} className="sofa-img" style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '6px' }} />
                 ) : (
-                  <span style={{ fontSize: '1.8rem' }}>🛋</span>
+                  <span className="sofa-img" style={{ fontSize: '1.8rem' }}>🛋</span>
                 )}
               </div>
 
@@ -336,6 +357,12 @@ export const Collection: React.FC = () => {
       <style>{`
         .sofa-card:hover {
           box-shadow: 0 8px 24px rgba(0,0,0,0.07);
+        }
+        .sofa-card:hover .sofa-img {
+          transform: scale(1.05) translateY(-5px);
+        }
+        .sofa-img {
+          transition: transform 0.3s ease;
         }
         .sofa-inquire-btn:hover {
           background-color: var(--color-primary) !important;

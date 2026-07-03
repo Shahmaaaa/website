@@ -58,11 +58,13 @@ export const FAQ: React.FC = () => {
               key={index}
               className={`faq-item ${openIndex === index ? 'open' : ''}`}
               style={{
-                backgroundColor: '#ffffff',
-                border: '1px solid rgba(198, 134, 66, 0.08)',
-                borderRadius: 'var(--radius-sm)',
+                background: openIndex === index ? '#3D2E24' : 'linear-gradient(135deg, #c4a484 0%, #684128 100%)',
+                border: '1px solid rgba(166, 123, 91, 0.15)',
+                borderRadius: '12px',
                 marginBottom: '1rem',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.03)',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)'
               }}
             >
               <button
@@ -74,28 +76,43 @@ export const FAQ: React.FC = () => {
                   display: 'flex',
                   justifyContent: 'space-between',
                   alignItems: 'center',
-                  padding: '1.5rem 2rem',
-                  fontSize: '1rem',
-                  fontWeight: 700,
-                  color: '#1A120E',
+                  padding: '1.5rem 1.75rem',
+                  fontSize: '1.05rem',
+                  fontWeight: 600,
+                  color: '#ffffff',
+                  backgroundColor: 'transparent',
                   textAlign: 'left',
-                  fontFamily: 'var(--font-family)'
+                  fontFamily: 'var(--font-family)',
+                  border: 'none',
+                  cursor: 'pointer',
+                  transition: 'color 0.3s ease'
                 }}
               >
-                <span>{item.question}</span>
-                {openIndex === index ? <ChevronUp size={18} style={{ color: 'var(--color-primary)' }} /> : <ChevronDown size={18} style={{ color: 'var(--color-primary)' }} />}
+                <span style={{ paddingRight: '1rem', lineHeight: '1.4' }}>{item.question}</span>
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  minWidth: '32px',
+                  height: '32px',
+                  borderRadius: '50%',
+                  backgroundColor: 'rgba(255, 255, 255, 0.15)',
+                  transition: 'all 0.3s ease'
+                }}>
+                  {openIndex === index ? <ChevronUp size={18} style={{ color: '#ffffff' }} /> : <ChevronDown size={18} style={{ color: '#ffffff' }} />}
+                </div>
               </button>
 
               <div 
                 className="faq-answer" 
                 style={{ 
                   maxHeight: openIndex === index ? '200px' : '0', 
-                  transition: 'all 0.3s ease',
-                  padding: openIndex === index ? '0 2rem 1.5rem 2rem' : '0 2rem',
+                  transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                  padding: openIndex === index ? '0 1.75rem 1.5rem 1.75rem' : '0 1.75rem',
                   opacity: openIndex === index ? 1 : 0
                 }}
               >
-                <p className="faq-answer-text" style={{ fontSize: '0.9rem', color: '#6B5B4F', lineHeight: '1.6' }}>
+                <p className="faq-answer-text" style={{ fontSize: '0.9rem', color: openIndex === index ? '#F4EFE6' : '#6B5B4F', lineHeight: '1.6', transition: 'color 0.3s ease' }}>
                   {item.answer}
                 </p>
               </div>
@@ -103,6 +120,13 @@ export const FAQ: React.FC = () => {
           ))}
         </div>
       </div>
+      <style>{`
+        .faq-item:hover {
+          transform: translateY(-3px);
+          box-shadow: 0 12px 30px rgba(166, 123, 91, 0.15) !important;
+          border-color: rgba(166, 123, 91, 0.3) !important;
+        }
+      `}</style>
     </section>
   );
 };

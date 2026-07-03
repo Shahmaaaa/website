@@ -76,46 +76,68 @@ export const Process: React.FC = () => {
 
   const handleWhatsAppInquiry = (stepTitle: string) => {
     const phoneNumber = '919961734882';
-    const message = encodeURIComponent(`Hi Zain Sofas, I am interested in custom building a sofa and want to consult on the "${stepTitle}" step.`);
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    const message =
+      `Hi Zain Sofas & Furniture! 👋\n\n` +
+      `I want to consult about: *${stepTitle}*\n\n` +
+      `📋 I found your website and would like to get more details.\n` +
+      `Please let me know how we can proceed.\n\n` +
+      `Thank you! 🙏`;
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   const handleWhatsAppCustomizer = () => {
     const phoneNumber = '919961734882';
-    const message = encodeURIComponent(
-      `Hi Zain Sofas, I am customizing a sofa layout on your Step 2 page. Here are my selections:\n\n` +
-      `- Sofa Style: ${sofaStyle}\n` +
-      `- Seating Capacity: ${seatingCapacity}\n` +
-      `- Upholstery Fabric: ${upholsteryFabric}\n` +
-      `- Color Shade: ${fabricColor}\n` +
-      `- Leg Finish: ${legFinish}\n` +
-      `- Armrest Style: ${armStyle}\n` +
-      `- Cushion Style: ${cushionStyle}\n\n` +
-      `Could you check fabric availability and give me a price estimate for this custom build?`
-    );
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+
+    // Map fabric color → sofa image for the owner to see
+    const imgMap: Record<string, string> = {
+      'Beige':   `${window.location.origin}/images/sofa_beige_fabric_3seater.png`,
+      'Caramel': `${window.location.origin}/images/sofa_brown_tufted_lshape.jpg`,
+      'Grey':    `${window.location.origin}/images/sofa_lightgrey_3seater.jpg`,
+      'Rust':    `${window.location.origin}/images/sofa_orange_ribbed_3seater.jpg`,
+      'Teal':    `${window.location.origin}/images/sofa_teal_3seater.jpg`,
+      'Pink':    `${window.location.origin}/images/sofa_pink_velvet_3seater.jpg`,
+    };
+    const sofaImageUrl = imgMap[fabricColor] || null;
+
+    const message =
+      `Hi Zain Sofas & Furniture! 👋\n\n` +
+      `I am customizing a sofa on your website and here are my selections:\n\n` +
+      `🛋️ *Custom Sofa Configuration:*\n` +
+      `• Style: ${sofaStyle}\n` +
+      `• Seating Capacity: ${seatingCapacity}\n` +
+      `• Upholstery Fabric: ${upholsteryFabric}\n` +
+      `• Color Shade: ${fabricColor}\n` +
+      `• Leg Finish: ${legFinish}\n` +
+      `• Armrest Style: ${armStyle}\n` +
+      `• Cushion Style: ${cushionStyle}\n` +
+      (sofaImageUrl ? `\n📸 *Reference Sofa Photo (${fabricColor}):*\n${sofaImageUrl}\n` : '') +
+      `\nCould you check fabric availability and give me a price estimate for this custom build? Thank you! 🙏`;
+
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   const handleWhatsAppMeasurements = () => {
     const phoneNumber = '919961734882';
-    const message = encodeURIComponent(
-      `Hi Zain Sofas, I have selected the custom dimensions for my sofa build on your Step 3 page:\n\n` +
-      `- Custom Width (Length): ${customWidth}\n` +
-      `- Custom Height: ${customHeight}\n` +
-      `- Custom Depth: ${customDepth}\n\n` +
-      `Please consult me on frame fitting and spatial clearances based on these dimensions.`
-    );
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    const message =
+      `Hi Zain Sofas & Furniture! 👋\n\n` +
+      `I have selected custom dimensions for my sofa build:\n\n` +
+      `📐 *Custom Sofa Dimensions:*\n` +
+      `• Width (Length): ${customWidth}\n` +
+      `• Back Height: ${customHeight}\n` +
+      `• Seat Depth: ${customDepth}\n\n` +
+      `Please consult me on frame fitting and spatial clearances based on these dimensions. Thank you! 🙏`;
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
   const handleWhatsAppDelivery = () => {
     const phoneNumber = '919961734882';
-    const message = encodeURIComponent(
-      `Hi Zain Sofas, I want to check custom sofa shipping rates and fleet availability to my region:\n\n` +
-      `- Selected Delivery Region: ${deliveryZone}\n\n` +
-      `Please let me know the timing slots and local shipping policies.`
-    );
-    window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
+    const message =
+      `Hi Zain Sofas & Furniture! 👋\n\n` +
+      `I would like to check delivery availability for my sofa order:\n\n` +
+      `🚚 *Delivery Details:*\n` +
+      `• Selected Delivery Region: ${deliveryZone}\n\n` +
+      `Please let me know the timing slots and shipping charges to my region. Thank you! 🙏`;
+    window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
   };
 
 
@@ -209,7 +231,7 @@ export const Process: React.FC = () => {
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 {/* 1. Sofa Style */}
                 <div>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-dark)', display: 'block', marginBottom: '0.65rem' }}>1. SOFA STYLE</span>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#e3c9a8', display: 'block', marginBottom: '0.65rem' }}>1. SOFA STYLE</span>
                   <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                     {['Modern', 'L Shape', 'Sectional', 'Classic', 'Minimalist'].map((style) => {
                       const isSel = style === sofaStyle;
@@ -219,13 +241,13 @@ export const Process: React.FC = () => {
                           onClick={() => setSofaStyle(style)}
                           style={{
                             padding: '0.55rem 1rem',
-                            border: `1.5px solid ${isSel ? 'var(--color-primary)' : '#ddd'}`,
-                            backgroundColor: isSel ? '#ffffff' : 'rgba(255,255,255,0.4)',
+                            border: `1.5px solid ${isSel ? 'var(--color-primary)' : 'rgba(255,255,255,0.2)'}`,
+                            backgroundColor: isSel ? '#ffffff' : 'rgba(255,255,255,0.1)',
                             borderRadius: '6px',
                             cursor: 'pointer',
                             fontSize: '0.78rem',
                             fontWeight: 700,
-                            color: isSel ? 'var(--color-primary)' : 'var(--color-dark-muted)',
+                            color: isSel ? 'var(--color-primary)' : '#ffffff',
                             transition: 'all 0.2s ease',
                             display: 'flex',
                             alignItems: 'center',
@@ -243,7 +265,7 @@ export const Process: React.FC = () => {
 
                 {/* 2. Seating Capacity */}
                 <div>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-dark)', display: 'block', marginBottom: '0.65rem' }}>2. SEATING CAPACITY</span>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#e3c9a8', display: 'block', marginBottom: '0.65rem' }}>2. SEATING CAPACITY</span>
                   <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                     {['1 Seater', '2 Seater', '3 Seater', '4 Seater', 'Custom Size'].map((cap) => {
                       const isSel = cap === seatingCapacity;
@@ -259,7 +281,7 @@ export const Process: React.FC = () => {
                             cursor: 'pointer',
                             fontSize: '0.78rem',
                             fontWeight: 700,
-                            color: isSel ? 'var(--color-primary)' : 'var(--color-dark-muted)',
+                            color: isSel ? 'var(--color-primary)' : '#ffffff',
                             transition: 'all 0.2s ease',
                             display: 'flex',
                             alignItems: 'center',
@@ -277,7 +299,7 @@ export const Process: React.FC = () => {
 
                 {/* 3. Upholstery Fabric */}
                 <div>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-dark)', display: 'block', marginBottom: '0.65rem' }}>3. UPHOLSTERY FABRIC</span>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#e3c9a8', display: 'block', marginBottom: '0.65rem' }}>3. UPHOLSTERY FABRIC</span>
                   <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                     {['Bouclé', 'Velvet', 'Linen', 'Chenille', 'Leatherette'].map((fabric) => {
                       const isSel = fabric === upholsteryFabric;
@@ -293,7 +315,7 @@ export const Process: React.FC = () => {
                             cursor: 'pointer',
                             fontSize: '0.78rem',
                             fontWeight: 700,
-                            color: isSel ? 'var(--color-primary)' : 'var(--color-dark-muted)',
+                            color: isSel ? 'var(--color-primary)' : '#ffffff',
                             transition: 'all 0.2s ease',
                             display: 'flex',
                             alignItems: 'center',
@@ -311,7 +333,7 @@ export const Process: React.FC = () => {
 
                 {/* 4. Fabric Color + inline thumbnail */}
                 <div>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-dark)', display: 'block', marginBottom: '0.65rem' }}>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#e3c9a8', display: 'block', marginBottom: '0.65rem' }}>
                     4. FABRIC COLOR: <strong style={{ color: 'var(--color-primary)' }}>{fabricColor}</strong>
                   </span>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', flexWrap: 'wrap' }}>
@@ -381,7 +403,7 @@ export const Process: React.FC = () => {
 
                 {/* 5. Leg Finish (Gold removed) */}
                 <div>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-dark)', display: 'block', marginBottom: '0.65rem' }}>5. LEG FINISH</span>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#e3c9a8', display: 'block', marginBottom: '0.65rem' }}>5. LEG FINISH</span>
                   <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                     {['Natural Oak', 'Walnut', 'Teak', 'Black', 'White'].map((leg) => {
                       const isSel = leg === legFinish;
@@ -397,7 +419,7 @@ export const Process: React.FC = () => {
                             cursor: 'pointer',
                             fontSize: '0.78rem',
                             fontWeight: 700,
-                            color: isSel ? 'var(--color-primary)' : 'var(--color-dark-muted)',
+                            color: isSel ? 'var(--color-primary)' : '#ffffff',
                             transition: 'all 0.2s ease',
                             display: 'flex',
                             alignItems: 'center',
@@ -415,7 +437,7 @@ export const Process: React.FC = () => {
 
                 {/* 6. Arm Style */}
                 <div>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-dark)', display: 'block', marginBottom: '0.65rem' }}>6. ARM STYLE</span>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#e3c9a8', display: 'block', marginBottom: '0.65rem' }}>6. ARM STYLE</span>
                   <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                     {['Square Arms', 'Curved Arms', 'Track Arms', 'Pillow Arms'].map((arm) => {
                       const isSel = arm === armStyle;
@@ -431,7 +453,7 @@ export const Process: React.FC = () => {
                             cursor: 'pointer',
                             fontSize: '0.78rem',
                             fontWeight: 700,
-                            color: isSel ? 'var(--color-primary)' : 'var(--color-dark-muted)',
+                            color: isSel ? 'var(--color-primary)' : '#ffffff',
                             transition: 'all 0.2s ease',
                             display: 'flex',
                             alignItems: 'center',
@@ -449,7 +471,7 @@ export const Process: React.FC = () => {
 
                 {/* 7. Cushion Style */}
                 <div>
-                  <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: 'var(--color-dark)', display: 'block', marginBottom: '0.65rem' }}>7. CUSHION STYLE</span>
+                  <span style={{ fontSize: '0.72rem', fontWeight: 800, textTransform: 'uppercase', letterSpacing: '0.08em', color: '#e3c9a8', display: 'block', marginBottom: '0.65rem' }}>7. CUSHION STYLE</span>
                   <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
                     {['Loose Cushions', 'Fixed Back', 'Tufted Back'].map((cushion) => {
                       const isSel = cushion === cushionStyle;
@@ -465,7 +487,7 @@ export const Process: React.FC = () => {
                             cursor: 'pointer',
                             fontSize: '0.78rem',
                             fontWeight: 700,
-                            color: isSel ? 'var(--color-primary)' : 'var(--color-dark-muted)',
+                            color: isSel ? 'var(--color-primary)' : '#ffffff',
                             transition: 'all 0.2s ease',
                             display: 'flex',
                             alignItems: 'center',
@@ -487,7 +509,7 @@ export const Process: React.FC = () => {
                 {/* Selection Details Box */}
                 <div 
                   style={{ 
-                    backgroundColor: 'var(--color-bg)', 
+                    backgroundColor: 'rgba(255,255,255,0.05)', 
                     border: '1.5px solid rgba(198,134,66,0.15)', 
                     borderRadius: '12px', 
                     padding: '1.5rem', 
@@ -498,33 +520,33 @@ export const Process: React.FC = () => {
                     YOUR SELECTION
                   </h4>
                   
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', fontSize: '0.8rem', color: 'var(--color-dark)' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1rem', fontSize: '0.8rem', color: '#ffffff' }}>
                     <div>
-                      <span style={{ color: 'var(--color-dark-muted)', display: 'block', fontSize: '0.7rem', textTransform: 'uppercase' }}>Style</span>
+                      <span style={{ color: '#d1b89e', display: 'block', fontSize: '0.7rem', textTransform: 'uppercase' }}>Style</span>
                       <strong>{sofaStyle}</strong>
                     </div>
                     <div>
-                      <span style={{ color: 'var(--color-dark-muted)', display: 'block', fontSize: '0.7rem', textTransform: 'uppercase' }}>Leg Finish</span>
+                      <span style={{ color: '#d1b89e', display: 'block', fontSize: '0.7rem', textTransform: 'uppercase' }}>Leg Finish</span>
                       <strong>{legFinish}</strong>
                     </div>
                     <div>
-                      <span style={{ color: 'var(--color-dark-muted)', display: 'block', fontSize: '0.7rem', textTransform: 'uppercase' }}>Seating</span>
+                      <span style={{ color: '#d1b89e', display: 'block', fontSize: '0.7rem', textTransform: 'uppercase' }}>Seating</span>
                       <strong>{seatingCapacity}</strong>
                     </div>
                     <div>
-                      <span style={{ color: 'var(--color-dark-muted)', display: 'block', fontSize: '0.7rem', textTransform: 'uppercase' }}>Arm Style</span>
+                      <span style={{ color: '#d1b89e', display: 'block', fontSize: '0.7rem', textTransform: 'uppercase' }}>Arm Style</span>
                       <strong>{armStyle}</strong>
                     </div>
                     <div>
-                      <span style={{ color: 'var(--color-dark-muted)', display: 'block', fontSize: '0.7rem', textTransform: 'uppercase' }}>Fabric</span>
+                      <span style={{ color: '#d1b89e', display: 'block', fontSize: '0.7rem', textTransform: 'uppercase' }}>Fabric</span>
                       <strong>{upholsteryFabric}</strong>
                     </div>
                     <div>
-                      <span style={{ color: 'var(--color-dark-muted)', display: 'block', fontSize: '0.7rem', textTransform: 'uppercase' }}>Cushion Style</span>
+                      <span style={{ color: '#d1b89e', display: 'block', fontSize: '0.7rem', textTransform: 'uppercase' }}>Cushion Style</span>
                       <strong>{cushionStyle}</strong>
                     </div>
                     <div>
-                      <span style={{ color: 'var(--color-dark-muted)', display: 'block', fontSize: '0.7rem', textTransform: 'uppercase' }}>Color</span>
+                      <span style={{ color: '#d1b89e', display: 'block', fontSize: '0.7rem', textTransform: 'uppercase' }}>Color</span>
                       <strong>{fabricColor}</strong>
                     </div>
                   </div>
@@ -608,8 +630,8 @@ export const Process: React.FC = () => {
               {/* Left Column: Interactive Dimensions Selectors */}
               <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 <div>
-                  <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: 'var(--color-dark)', marginBottom: '0.5rem' }}>Select Custom Dimensions</h4>
-                  <p style={{ fontSize: '0.85rem', color: 'var(--color-dark-muted)', lineHeight: '1.5', margin: 0 }}>
+                  <h4 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.5rem' }}>Select Custom Dimensions</h4>
+                  <p style={{ fontSize: '0.85rem', color: 'rgba(255,255,255,0.75)', lineHeight: '1.5', margin: 0 }}>
                     Select your desired Width, Height, and Depth. We will adjust the seasoned teakwood framework exactly to your choices.
                   </p>
                 </div>
@@ -628,13 +650,13 @@ export const Process: React.FC = () => {
                           onClick={() => setCustomWidth(w)}
                           style={{
                             padding: '0.55rem 1rem',
-                            border: `1.5px solid ${isSel ? 'var(--color-primary)' : '#ddd'}`,
-                            backgroundColor: isSel ? 'var(--color-bg)' : 'rgba(255,255,255,0.05)',
+                            border: `1.5px solid ${isSel ? 'var(--color-primary)' : 'rgba(255,255,255,0.2)'}`,
+                            backgroundColor: isSel ? 'var(--color-bg)' : 'rgba(255,255,255,0.1)',
                             borderRadius: '6px',
                             cursor: 'pointer',
                             fontSize: '0.78rem',
                             fontWeight: 700,
-                            color: isSel ? 'var(--color-primary)' : 'var(--color-dark-muted)',
+                            color: isSel ? 'var(--color-primary)' : '#ffffff',
                             transition: 'all 0.2s ease',
                             display: 'flex',
                             alignItems: 'center',
@@ -1048,7 +1070,7 @@ export const Process: React.FC = () => {
       id="process" 
       className="section" 
       style={{ 
-        backgroundImage: `linear-gradient(rgba(26, 18, 14, 0.88), rgba(26, 18, 14, 0.95)), url(${roomBackdropImage})`,
+        backgroundImage: `linear-gradient(135deg, rgba(90, 59, 34, 0.85), rgba(43, 27, 17, 0.95)), url(${roomBackdropImage})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         borderBottom: '1px solid rgba(198, 134, 66, 0.08)',
@@ -1093,10 +1115,10 @@ export const Process: React.FC = () => {
                   onClick={() => setActiveStep(step.id)}
                   style={{
                     width: '165px', height: '210px',
-                    borderRadius: '110px 110px 24px 24px', 
+                    borderRadius: '110px 110px 24px 24px',
                     background: isActive ? 'var(--color-bg-alt)' : 'linear-gradient(145deg, var(--color-card-bg) 0%, var(--color-bg) 100%)',
-                    border: isActive ? '2px solid var(--color-primary)' : '1px solid rgba(198, 134, 66, 0.25)',
-                    boxShadow: isActive ? '0 15px 35px rgba(0,0,0,0.4)' : '0 8px 25px rgba(0,0,0,0.2)',
+                    border: isActive ? '2px solid #e3a564' : '1.5px solid rgba(198, 134, 66, 0.5)',
+                    boxShadow: isActive ? '0 0 0 3px rgba(198,134,66,0.15), 0 15px 35px rgba(0,0,0,0.4)' : '0 0 0 1px rgba(198,134,66,0.08), 0 8px 25px rgba(0,0,0,0.2)',
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start',
                     padding: '2.5rem 0.5rem 1.2rem 0.5rem',
                     position: 'relative', cursor: 'pointer', outline: 'none'
@@ -1109,7 +1131,7 @@ export const Process: React.FC = () => {
                   </div>
 
                   {/* Icon Circle */}
-                  <div style={{ width: '56px', height: '56px', borderRadius: '50%', backgroundColor: isActive ? 'rgba(198,134,66,0.08)' : 'transparent', border: isActive ? '1px dashed rgba(198,134,66,0.3)' : '1px solid transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.25rem', transition: 'all 0.3s ease', color: isActive ? 'var(--color-primary)' : 'var(--color-primary)' }}>
+                  <div style={{ width: '56px', height: '56px', borderRadius: '50%', backgroundColor: isActive ? 'rgba(198,134,66,0.08)' : 'transparent', border: isActive ? '1px dashed rgba(198,134,66,0.3)' : '1px solid transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.25rem', transition: 'all 0.3s ease' }}>
                     {step.icon}
                   </div>
 
@@ -1117,7 +1139,7 @@ export const Process: React.FC = () => {
                   <span style={{ fontSize: '0.8rem', fontWeight: 700, color: isActive ? 'var(--color-dark)' : 'var(--color-dark-muted)', lineHeight: '1.3', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                     {step.title}
                   </span>
-                  
+
                   {/* Active Indicator Dot */}
                   {isActive && <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'var(--color-primary)', position: 'absolute', bottom: '1rem' }} />}
                 </button>
@@ -1135,23 +1157,23 @@ export const Process: React.FC = () => {
                   onClick={() => setActiveStep(step.id)}
                   style={{
                     width: '165px', height: '210px',
-                    borderRadius: '110px 110px 24px 24px', 
+                    borderRadius: '110px 110px 24px 24px',
                     background: isActive ? 'var(--color-bg-alt)' : 'linear-gradient(145deg, var(--color-card-bg) 0%, var(--color-bg) 100%)',
-                    border: isActive ? '2px solid var(--color-primary)' : '1px solid rgba(198, 134, 66, 0.25)',
-                    boxShadow: isActive ? '0 15px 35px rgba(0,0,0,0.4)' : '0 8px 25px rgba(0,0,0,0.2)',
+                    border: isActive ? '2px solid #e3a564' : '1.5px solid rgba(198, 134, 66, 0.5)',
+                    boxShadow: isActive ? '0 0 0 3px rgba(198,134,66,0.15), 0 15px 35px rgba(0,0,0,0.4)' : '0 0 0 1px rgba(198,134,66,0.08), 0 8px 25px rgba(0,0,0,0.2)',
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start',
                     padding: '2.5rem 0.5rem 1.2rem 0.5rem',
                     position: 'relative', cursor: 'pointer', outline: 'none'
                   }}
                   className="process-arched-pill"
                 >
-                  <div style={{ position: 'absolute', top: '-20px', width: '40px', height: '40px', borderRadius: '50%', background: isActive ? 'linear-gradient(135deg, #d3914a 0%, #b87532 100%)' : '#e6d3bf', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '0.95rem', border: '3px solid #fcfbf9', boxShadow: '0 4px 12px rgba(198,134,66,0.15)', transition: 'all 0.3s ease', zIndex: 2 }}>
+                  <div style={{ position: 'absolute', top: '-20px', width: '40px', height: '40px', borderRadius: '50%', background: isActive ? 'linear-gradient(135deg, #d3914a 0%, #b87532 100%)' : 'var(--color-bg-alt)', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 800, fontSize: '0.95rem', border: '3px solid var(--color-bg)', boxShadow: '0 4px 12px rgba(0,0,0,0.3)', transition: 'all 0.3s ease', zIndex: 2 }}>
                     {step.number}
                   </div>
-                  <div style={{ width: '56px', height: '56px', borderRadius: '50%', backgroundColor: isActive ? 'rgba(198,134,66,0.08)' : 'transparent', border: isActive ? '1px dashed rgba(198,134,66,0.3)' : '1px solid transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.25rem', transition: 'all 0.3s ease', color: 'var(--color-primary)' }}>
+                  <div style={{ width: '56px', height: '56px', borderRadius: '50%', backgroundColor: isActive ? 'rgba(198,134,66,0.08)' : 'transparent', border: isActive ? '1px dashed rgba(198,134,66,0.3)' : '1px solid transparent', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1.25rem', transition: 'all 0.3s ease' }}>
                     {step.icon}
                   </div>
-                  <span style={{ fontSize: '0.8rem', fontWeight: 700, color: isActive ? 'var(--color-dark)' : '#7a6a58', lineHeight: '1.3', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
+                  <span style={{ fontSize: '0.8rem', fontWeight: 700, color: isActive ? 'var(--color-dark)' : 'var(--color-dark-muted)', lineHeight: '1.3', textTransform: 'uppercase', letterSpacing: '0.05em' }}>
                     {step.title}
                   </span>
                   {isActive && <div style={{ width: '4px', height: '4px', borderRadius: '50%', backgroundColor: 'var(--color-primary)', position: 'absolute', bottom: '1rem' }} />}
@@ -1193,14 +1215,14 @@ export const Process: React.FC = () => {
           transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
         .process-arched-pill:hover {
-          transform: translateY(-8px) !important;
-          box-shadow: 0 18px 40px rgba(198, 134, 66, 0.18) !important;
-          border-color: rgba(198, 134, 66, 0.5) !important;
+          transform: translateY(-10px) !important;
+          box-shadow: 0 0 0 2px rgba(198,134,66,0.4), 0 24px 50px rgba(0,0,0,0.5), 0 0 30px rgba(198,134,66,0.12) !important;
+          border-color: rgba(198, 134, 66, 0.9) !important;
           z-index: 10;
         }
         .process-arched-pill:hover > div:first-child {
-          transform: translateY(-4px) scale(1.1) !important;
-          box-shadow: 0 6px 16px rgba(198, 134, 66, 0.2) !important;
+          transform: translateY(-5px) scale(1.12) !important;
+          box-shadow: 0 0 16px rgba(227,165,100,0.5), 0 6px 16px rgba(0,0,0,0.3) !important;
         }
 
         /* Float animation for option selector buttons (width, height, style, fabric, etc.) */

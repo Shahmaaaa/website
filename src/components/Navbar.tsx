@@ -54,7 +54,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onLinkClick }) =>
             color: 'var(--color-white)',
             fontSize: '0.7rem',
             fontWeight: 700,
-            letterSpacing: '0.12em',
+            letterSpacing: '0.1em',
             padding: isScrolled ? '0px' : '0.45rem 1rem',
             textAlign: 'center',
             textTransform: 'uppercase',
@@ -64,14 +64,15 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onLinkClick }) =>
             transition: 'all 0.3s ease',
             height: isScrolled ? '0px' : 'auto',
             opacity: isScrolled ? 0 : 1,
-            overflow: 'hidden'
+            overflow: 'hidden',
+            whiteSpace: 'nowrap'
           }}
         >
           <span>DELIVERY ACROSS KERALA</span>
-          <span style={{ opacity: 0.4, margin: '0 0.8rem' }}>|</span>
-          <span>CUSTOMIZE SOFAS LIKE ANYTHING</span>
-          <span style={{ opacity: 0.4, margin: '0 0.8rem' }}>|</span>
-          <span>EXPERT LOCAL CRAFTSMANSHIP</span>
+          <span className="promo-extra" style={{ opacity: 0.4, margin: '0 0.8rem' }}>|</span>
+          <span className="promo-extra">CUSTOMIZE SOFAS LIKE ANYTHING</span>
+          <span className="promo-extra" style={{ opacity: 0.4, margin: '0 0.8rem' }}>|</span>
+          <span className="promo-extra">EXPERT LOCAL CRAFTSMANSHIP</span>
         </div>
 
         <div className="navbar-container" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '0.5rem 2rem' }}>

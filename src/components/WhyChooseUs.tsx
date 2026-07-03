@@ -113,7 +113,7 @@ export const WhyChooseUs: React.FC = () => {
       </div>
 
       {/* ══════════ FEATURE CARDS (DARK BROWN THEME) ══════════ */}
-      <div style={{ backgroundColor: '#160e0a', padding: '5rem 1.5rem', position: 'relative' }}>
+      <div style={{ background: 'linear-gradient(135deg, #1a0f0a 0%, #684128 100%)', padding: '5rem 1.5rem', position: 'relative' }}>
         {/* Subtle grid and glow overlay for the dark section */}
         <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(198,134,66,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(198,134,66,0.03) 1px, transparent 1px)', backgroundSize: '40px 40px', pointerEvents: 'none' }} />
         <div style={{ position: 'absolute', top: 0, left: '50%', transform: 'translateX(-50%)', width: '80%', height: '1px', background: 'linear-gradient(90deg, transparent, rgba(198,134,66,0.4), transparent)', pointerEvents: 'none' }} />

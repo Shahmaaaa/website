@@ -13,8 +13,8 @@ export const WhatsAppButton: React.FC = () => {
       target="_blank"
       rel="noopener noreferrer"
       className="whatsapp-floating-btn pulse"
-      aria-label="Contact Zain Sofas on WhatsApp"
-      title="Inquire on WhatsApp"
+      aria-label="Contact Zain Sofas on WhatsApp Business"
+      title="Inquire on WhatsApp Business"
     >
       <svg
         viewBox="0 0 24 24"
