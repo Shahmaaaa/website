@@ -1116,7 +1116,7 @@ export const Process: React.FC = () => {
                   style={{
                     width: '165px', height: '210px',
                     borderRadius: '110px 110px 24px 24px',
-                    background: isActive ? 'var(--color-bg-alt)' : 'linear-gradient(145deg, var(--color-card-bg) 0%, var(--color-bg) 100%)',
+                    background: isActive ? 'linear-gradient(145deg, #6b3f22 0%, #4a2910 100%)' : 'linear-gradient(145deg, #5a3418 0%, #3d2210 100%)',
                     border: isActive ? '2px solid #e3a564' : '1.5px solid rgba(198, 134, 66, 0.5)',
                     boxShadow: isActive ? '0 0 0 3px rgba(198,134,66,0.15), 0 15px 35px rgba(0,0,0,0.4)' : '0 0 0 1px rgba(198,134,66,0.08), 0 8px 25px rgba(0,0,0,0.2)',
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start',
@@ -1158,7 +1158,7 @@ export const Process: React.FC = () => {
                   style={{
                     width: '165px', height: '210px',
                     borderRadius: '110px 110px 24px 24px',
-                    background: isActive ? 'var(--color-bg-alt)' : 'linear-gradient(145deg, var(--color-card-bg) 0%, var(--color-bg) 100%)',
+                    background: isActive ? 'linear-gradient(145deg, #6b3f22 0%, #4a2910 100%)' : 'linear-gradient(145deg, #5a3418 0%, #3d2210 100%)',
                     border: isActive ? '2px solid #e3a564' : '1.5px solid rgba(198, 134, 66, 0.5)',
                     boxShadow: isActive ? '0 0 0 3px rgba(198,134,66,0.15), 0 15px 35px rgba(0,0,0,0.4)' : '0 0 0 1px rgba(198,134,66,0.08), 0 8px 25px rgba(0,0,0,0.2)',
                     display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'flex-start',

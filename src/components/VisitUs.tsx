@@ -58,7 +58,7 @@ export const VisitUs: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="contact-item-title" style={{ fontSize: '0.95rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.2rem' }}>Business Hours</h4>
-                  <p className="contact-item-value" style={{ fontSize: '0.88rem', color: '#6B5B4F' }}>
+                  <p className="contact-item-value" style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.75)' }}>
                     Monday - Sunday: 9:30 AM - 8:30 PM
                   </p>
                 </div>
@@ -70,7 +70,7 @@ export const VisitUs: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="contact-item-title" style={{ fontSize: '0.95rem', fontWeight: 700, color: '#ffffff', marginBottom: '0.2rem' }}>Home Delivery</h4>
-                  <p className="contact-item-value" style={{ fontSize: '0.88rem', color: '#6B5B4F' }}>
+                  <p className="contact-item-value" style={{ fontSize: '0.88rem', color: 'rgba(255,255,255,0.75)' }}>
                     Safe delivery available directly from our workshop to any location in Kerala.
                   </p>
                 </div>
