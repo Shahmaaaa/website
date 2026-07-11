@@ -2,8 +2,8 @@ import React from 'react';
 import { MapPin, Phone, Clock, Truck, Navigation } from 'lucide-react';
 
 export const VisitUs: React.FC = () => {
-  const directionsUrl = 'https://maps.google.com/?q=Zain+Sofas+and+Furniture+Kalikavu+Road+Wandoor+Kerala';
-  const mapEmbedUrl = 'https://maps.google.com/maps?q=Zain%20Sofas%20%26%20Furniture,%20Kalikavu%20Road,%20Wandoor,%20Kerala&t=&z=16&ie=UTF8&iwloc=&output=embed';
+  const directionsUrl = 'https://share.google/U8rCJ1IkUBmK1d6n0';
+  const mapEmbedUrl = 'https://maps.google.com/maps?q=Zain+Sofas+%26+Furniture+Kuttiyil+Wandoor+Kerala&t=&z=17&ie=UTF8&iwloc=&output=embed';
 
   return (
     <section id="visit" className="section" style={{ background: 'linear-gradient(135deg, #2b1b11 0%, #5a3b22 35%, #a0683a 65%, #e8c99a 100%)', borderBottom: '1px solid rgba(198, 134, 66, 0.08)' }}>

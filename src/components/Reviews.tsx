@@ -111,11 +111,9 @@ export const Reviews: React.FC = () => {
             Have you purchased from us? We'd love to hear your thoughts!
           </p>
           <a 
-            href="#" 
-            onClick={(e) => {
-              e.preventDefault();
-              alert("Please provide your Google Business Profile link to activate this button.");
-            }}
+            href="https://share.google/U8rCJ1IkUBmK1d6n0"
+            target="_blank"
+            rel="noopener noreferrer"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
