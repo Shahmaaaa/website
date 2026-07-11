@@ -86,7 +86,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection, onLinkClick }) =>
           </div>
 
           {/* Desktop Navigation Links */}
-          <ul className="navbar-menu-desktop" style={{ display: 'flex', listStyle: 'none', gap: '2rem', margin: 0, padding: 0 }}>
+          <ul className="navbar-menu-desktop">
             {navLinks.map((link) => (
               <li key={link.id} className="navbar-item">
                 <button
