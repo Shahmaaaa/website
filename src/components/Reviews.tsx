@@ -35,7 +35,6 @@ export const Reviews: React.FC = () => {
       <div className="container">
         {/* Section Header */}
         <div className="section-header fade-in-on-scroll visible" style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
-          <span className="section-subtitle" style={{ letterSpacing: '0.15em', fontWeight: 600, color: '#f5ebe0' }}>CLIENT REVIEWS</span>
           <h2 className="section-title" style={{ fontFamily: 'var(--font-serif)', fontSize: '2.5rem', fontWeight: 600, color: '#ffffff', marginTop: '0.5rem' }}>
             Customer Testimonials
           </h2>
