@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { MessageSquare, Search, X, Grid, List } from 'lucide-react';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../firebase';
 
 interface SofaItem {
   id: string;
@@ -12,32 +14,50 @@ interface SofaItem {
 
 const STYLE_FILTERS = ['ALL', 'MODERN', 'L-SHAPE', 'SECTIONAL', 'CLASSIC', 'CUSTOM'];
 
-// Sofa catalog — images provided by user, more to be added
-const SOFAS: SofaItem[] = [
-  { id: 's1', name: 'Royal Chesterfield', style: 'CLASSIC', tag: 'Premium', image: '/images/sofas/sofa-classic-chesterfield.jpg', swatches: [{ name: 'Brown', hex: '#7a4a2a' }, { name: 'Tan', hex: '#c68642' }, { name: 'Beige', hex: '#e8dec9' }] },
-  { id: 's2', name: 'Milano Elegance', style: 'MODERN', tag: 'New Arrival', image: '/images/sofas/sofa-modern-cream.png', swatches: [{ name: 'Ivory', hex: '#f5f1ea' }, { name: 'Grey', hex: '#888' }, { name: 'Beige', hex: '#e8dec9' }] },
-  { id: 's3', name: 'Grand Luxe Sectional', style: 'SECTIONAL', tag: 'Featured', image: '/images/sofas/sofa-luxury-sectional.jpg', swatches: [{ name: 'Beige', hex: '#e8dec9' }, { name: 'Grey', hex: '#999' }, { name: 'Ivory', hex: '#f5f1ea' }] },
-  { id: 's4', name: 'Quilted Modular', style: 'L-SHAPE', tag: 'New Arrival', image: '/images/sofas/sofa-quilted-modular.jpg', swatches: [{ name: 'Sand', hex: '#d2c4a8' }, { name: 'Brown', hex: '#7a4a2a' }, { name: 'Tan', hex: '#c68642' }] },
-  { id: 's5', name: 'Nordic Comfort', style: 'MODERN', tag: 'Featured', image: '/images/sofas/sofa-minimal-beige.png', swatches: [{ name: 'Cream', hex: '#f5f0e1' }, { name: 'Beige', hex: '#e8dec9' }, { name: 'Grey', hex: '#888' }] },
-  { id: 's6', name: 'Teal Modern 3-Seater', style: 'MODERN', tag: 'Premium', image: '/images/sofa_teal_3seater.jpg', swatches: [{ name: 'Teal Blue', hex: '#008080' }, { name: 'Navy Blue', hex: '#000080' }, { name: 'Emerald', hex: '#50C878' }] },
-  { id: 's7', name: 'Rust Orange Ribbed L-Shape', style: 'L-SHAPE', tag: 'New Arrival', image: '/images/sofa_orange_ribbed_lshape.jpg', swatches: [{ name: 'Rust Orange', hex: '#C35831' }, { name: 'Charcoal', hex: '#36454F' }, { name: 'Mustard', hex: '#FFDB58' }] },
-  { id: 's8', name: 'Light Grey Button-Tufted', style: 'CLASSIC', tag: 'Premium', image: '/images/sofa_lightgrey_3seater.jpg', swatches: [{ name: 'Light Grey', hex: '#D3D3D3' }, { name: 'Dark Grey', hex: '#A9A9A9' }, { name: 'Beige', hex: '#F5F5DC' }] },
-  { id: 's9', name: 'Caramel Diamond-Tufted', style: 'SECTIONAL', tag: 'Featured', image: '/images/sofa_brown_tufted_lshape.jpg', swatches: [{ name: 'Caramel Brown', hex: '#A65D24' }, { name: 'Espresso', hex: '#4B3621' }, { name: 'Ivory', hex: '#FFFFF0' }] },
-  { id: 's10', name: 'Rust Orange Ribbed 3-Seater', style: 'CUSTOM', tag: 'New Arrival', image: '/images/sofa_orange_ribbed_3seater.jpg', swatches: [{ name: 'Rust Orange', hex: '#C35831' }, { name: 'Forest Green', hex: '#228B22' }, { name: 'Navy', hex: '#000080' }] },
-  { id: 's11', name: 'Blush Pink 3-Seater', style: 'MODERN', tag: 'Premium', image: '/images/sofa_pink_velvet_3seater.jpg', swatches: [{ name: 'Blush Pink', hex: '#EBB4B8' }, { name: 'Mint Green', hex: '#98FF98' }, { name: 'Cream', hex: '#FFFDD0' }] },
-  { id: 's12', name: 'Brown Leather Sectional', style: 'SECTIONAL', tag: 'Showroom', image: '/images/sofa_brown_leather_sectional.jpg', swatches: [{ name: 'Classic Brown', hex: '#8B4513' }, { name: 'Black', hex: '#000000' }, { name: 'Tan', hex: '#D2B48C' }] },
-  { id: 's13', name: 'Beige Fabric 3-Seater', style: 'CLASSIC', tag: 'Premium', image: '/images/sofa_beige_fabric_3seater.png', swatches: [{ name: 'Neutral Beige', hex: '#D5C4A1' }, { name: 'Slate Blue', hex: '#6A5ACD' }, { name: 'Olive', hex: '#808000' }] },
-  { id: 's14', name: 'Textured Grey Sectional', style: 'L-SHAPE', tag: 'Featured', image: '/images/sofa_grey_sectional.png', swatches: [{ name: 'Textured Grey', hex: '#808080' }, { name: 'Sand', hex: '#C2B280' }, { name: 'Ocean Blue', hex: '#0077BE' }] },
-  { id: 's15', name: 'Amber Velvet Sectional', style: 'SECTIONAL', tag: 'Showroom', image: '/images/sofa_orange_velvet_sectional.png', swatches: [{ name: 'Amber Orange', hex: '#CC7722' }, { name: 'Ruby Red', hex: '#E0115F' }, { name: 'Sapphire', hex: '#0F52BA' }] },
-];
-
 export const Collection: React.FC = () => {
   const [activeFilter, setActiveFilter] = useState('ALL');
   const [activeSwatches, setActiveSwatches] = useState<Record<string, string>>({});
   const [searchQuery, setSearchQuery] = useState('');
   const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
+  const [sofas, setSofas] = useState<SofaItem[]>([]);
 
-  const filtered = SOFAS.filter((s) => {
+  useEffect(() => {
+    const fetchSofas = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, 'sofas'));
+        const dynamicSofas: SofaItem[] = querySnapshot.docs.map(doc => {
+          const data = doc.data();
+          return {
+            id: doc.id,
+            name: data.name || '',
+            style: data.style || '',
+            image: data.image || '',
+            tag: data.tag || '',
+            swatches: data.swatches || [],
+            order: data.order !== undefined ? data.order : Number.MAX_SAFE_INTEGER,
+            createdAt: data.createdAt || ''
+          } as any;
+        });
+
+        // Sort client-side by order ascending. Legacy documents without 'order' default to end.
+        dynamicSofas.sort((a: any, b: any) => {
+          const orderA = a.order !== undefined ? a.order : Number.MAX_SAFE_INTEGER;
+          const orderB = b.order !== undefined ? b.order : Number.MAX_SAFE_INTEGER;
+          if (orderA !== orderB) {
+            return orderA - orderB;
+          }
+          return new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime();
+        });
+
+        setSofas(dynamicSofas);
+      } catch (error) {
+        console.error("Error fetching dynamic sofas:", error);
+      }
+    };
+    fetchSofas();
+  }, []);
+
+  const filtered = sofas.filter((s) => {
     const matchStyle = activeFilter === 'ALL' || s.style === activeFilter;
     const matchSearch = s.name.toLowerCase().includes(searchQuery.toLowerCase());
     return matchStyle && matchSearch;

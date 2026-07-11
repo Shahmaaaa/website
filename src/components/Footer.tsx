@@ -102,8 +102,15 @@ export const Footer: React.FC<FooterProps> = ({ onLinkClick }) => {
           <p className="footer-copy">
             &copy; {currentYear} Zain Sofas & Furniture. All rights reserved.
           </p>
-          <p className="footer-credits">
-            Designed for <a href="file:///d:/zainsofa">Zain Furniture</a>
+          <p className="footer-credits" style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+            Designed for <a href="/">Zain Furniture</a>
+            <span style={{ opacity: 0.3 }}>|</span>
+            <a href="/admin" style={{ color: 'inherit', display: 'flex', alignItems: 'center' }} title="Admin Login">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+              </svg>
+            </a>
           </p>
         </div>
       </div>

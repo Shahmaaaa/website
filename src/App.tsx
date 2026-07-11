@@ -13,7 +13,10 @@ import { VisitUs } from './components/VisitUs';
 import { Footer } from './components/Footer';
 import { WhatsAppButton } from './components/WhatsAppButton';
 
-export const App: React.FC = () => {
+import { Routes, Route } from 'react-router-dom';
+import { AdminPanel } from './components/AdminPanel';
+
+const MainSite: React.FC = () => {
   const [activeSection, setActiveSection] = useState('home');
 
   // Smooth scroll helper
@@ -130,4 +133,14 @@ export const App: React.FC = () => {
     </>
   );
 };
+
+export const App: React.FC = () => {
+  return (
+    <Routes>
+      <Route path="/" element={<MainSite />} />
+      <Route path="/admin" element={<AdminPanel />} />
+    </Routes>
+  );
+};
+
 export default App;
