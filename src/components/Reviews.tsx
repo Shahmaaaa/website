@@ -5,6 +5,7 @@ interface Testimonial {
   name: string;
   location: string;
   rating: number;
+  text: string;
   initials: string;
 }
 
@@ -14,18 +15,21 @@ export const Reviews: React.FC = () => {
       name: 'Shahma',
       location: 'Wandoor, Kerala',
       rating: 5,
+      text: 'We ordered custom velvet sofas for our new house. The craftsmanship is excellent, and the dual-tone colors match our living room walls beautifully. Truly furniture that feels like home!',
       initials: 'S',
     },
     {
       name: 'Jayakrishnan CP',
       location: 'Local Guide · Wandoor',
       rating: 3,
+      text: 'Good furniture this place',
       initials: 'JC',
     },
     {
       name: 'Dr. Hisham Hyder Wandoor',
       location: 'Local Guide · Wandoor',
       rating: 5,
+      text: 'Nice place for furniture',
       initials: 'HH',
     },
   ];
@@ -66,6 +70,10 @@ export const Reviews: React.FC = () => {
                 ))}
               </div>
 
+              {/* Review Text */}
+              <p className="review-text" style={{ fontSize: '0.9rem', color: 'rgba(255, 255, 255, 0.9)', lineHeight: '1.6', fontStyle: 'italic', flexGrow: 1 }}>
+                "{review.text}"
+              </p>
 
               {/* Reviewer Meta */}
               <div className="reviewer-info" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', borderTop: '1px solid rgba(255, 255, 255, 0.15)', paddingTop: '1rem' }}>
