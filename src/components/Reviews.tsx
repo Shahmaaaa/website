@@ -5,32 +5,28 @@ interface Testimonial {
   name: string;
   location: string;
   rating: number;
-  text: string;
   initials: string;
 }
 
 export const Reviews: React.FC = () => {
   const reviews: Testimonial[] = [
     {
-      name: 'Mathew Joseph',
-      location: 'Ernakulam, Kerala',
-      rating: 5,
-      text: 'Absolutely love the custom L-shaped sectional sofa we ordered. The fabric is highly premium and stain-resistant. Zain\'s delivery team brought it safely and set it up perfectly.',
-      initials: 'MJ',
-    },
-    {
-      name: 'Fathima Nissa',
+      name: 'Shahma',
       location: 'Wandoor, Kerala',
       rating: 5,
-      text: 'We ordered custom velvet sofas for our new house. The craftsmanship is excellent, and the dual-tone colors match our living room walls beautifully. Truly furniture that feels like home!',
-      initials: 'FN',
+      initials: 'S',
     },
     {
-      name: 'Rajesh Kumar',
-      location: 'Kozhikode, Kerala',
+      name: 'Jayakrishnan CP',
+      location: 'Local Guide · Wandoor',
+      rating: 3,
+      initials: 'JC',
+    },
+    {
+      name: 'Dr. Hisham Hyder Wandoor',
+      location: 'Local Guide · Wandoor',
       rating: 5,
-      text: 'Best furniture showroom in the Wandoor region. They customized the seat depth and foam density exactly to my parents\' orthopedic comfort needs. Excellent wholesale rates and client care.',
-      initials: 'RK',
+      initials: 'HH',
     },
   ];
 
@@ -71,10 +67,6 @@ export const Reviews: React.FC = () => {
                 ))}
               </div>
 
-              {/* Review Text */}
-              <p className="review-text" style={{ fontSize: '0.95rem', color: '#fcfaf8', lineHeight: '1.6', fontStyle: 'italic', flexGrow: 1, textShadow: '0 1px 2px rgba(0,0,0,0.2)' }}>
-                "{review.text}"
-              </p>
 
               {/* Reviewer Meta */}
               <div className="reviewer-info" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', borderTop: '1px solid rgba(255, 255, 255, 0.15)', paddingTop: '1rem' }}>
